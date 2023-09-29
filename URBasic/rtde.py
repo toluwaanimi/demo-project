@@ -487,7 +487,7 @@ class RTDE(threading.Thread): #, metaclass=Singleton
             raise ValueError("We only support protocol version 1 at the moment")
 
     def __decodePayload(self, cmd, payload):
-        #print(cmd)
+        print(cmd)
         '''
         Decode the package received from the Robot
         payload (bytes)
@@ -540,11 +540,13 @@ class RTDE(threading.Thread): #, metaclass=Singleton
             return output_config
 
         elif cmd == Command.RTDE_CONTROL_PACKAGE_SETUP_INPUTS:
+            print(payload)
             if len(payload) < 1:
                 self._logger.error('RTDE_CONTROL_PACKAGE_SETUP_INPUTS: No payload')
                 return None
             has_recipe_id = True
             input_config = RTDE_IO_Config.unpack_recipe(payload, has_recipe_id)
+            print(input_config)
             return input_config
 
         elif cmd == Command.RTDE_CONTROL_PACKAGE_START:
@@ -662,6 +664,7 @@ class RTDE_IO_Config(object):
     @staticmethod
     def unpack_recipe(buf, has_recipe_id):
         rmd = RTDE_IO_Config();
+        print(rmd)
         if has_recipe_id:
             rmd.id = struct.unpack_from('>B', buf)[0]
             fmt = ">" + str(len(buf)) + "B"

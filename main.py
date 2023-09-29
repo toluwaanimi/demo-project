@@ -17,11 +17,11 @@ import threading
 RASPBERRY_BOOL = False
 # If this is run on a linux system, a picamera will be used.
 # If you are using a linux system, with a webcam instead of a raspberry pi delete the following if-statement
-if sys.platform == "linux":
-    import picamera
-    from picamera.array import PiRGBArray
+# if sys.platform == "linux":
+#     import picamera
+#     from picamera.array import PiRGBArray
 
-    RASPBERRY_BOOL = True
+#     RASPBERRY_BOOL = True
 
 ROBOT_IP = '192.168.0.191'
 ACCELERATION = 0.9  # Robot acceleration value
